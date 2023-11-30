@@ -13,7 +13,7 @@ export class AlbumEntity {
     fechaFin: string;
  
     @Column()
-    titulo: number;
+    titulo: string;
 
     @OneToMany(() => FotoEntity, foto => foto.album)
     fotos: FotoEntity[];
