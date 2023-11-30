@@ -1,3 +1,4 @@
+import { AlbumEntity } from 'src/album/album.entity/album.entity';
 import { UsuarioEntity } from '../../usuario/usuario.entity/usuario.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
@@ -25,5 +26,8 @@ export class FotoEntity {
 
     @ManyToOne(() => UsuarioEntity, usuario =>  usuario.fotos)
     usuario: UsuarioEntity;
+
+    @ManyToOne(() => AlbumEntity, album =>  album.fotos)
+    album: AlbumEntity;
 
 }
