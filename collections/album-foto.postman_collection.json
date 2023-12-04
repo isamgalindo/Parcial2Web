@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "3fca507c-b4cc-4757-b590-32d4d6ec4ec8",
+		"name": "album-foto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20373990",
+		"_collection_link": "https://grey-flare-858966.postman.co/workspace/Museum~8ffc3164-6317-401e-a46d-8fd5cc1b041e/collection/20373990-3fca507c-b4cc-4757-b590-32d4d6ec4ec8?action=share&source=collection_link&creator=20373990"
+	},
+	"item": [
+		{
+			"name": "Agregar una foto a un album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fechaInicio\": \"2020/12/11\",\n    \"fechaFin\": \"2020/12/11\",\n    \"titulo\": \"Verano\",\n    \"fotos\": [\n        {\n            \"ISO\": 110,\n            \"velObturacion\": 3,\n            \"apertura\": 2,\n            \"fecha\": \"2020/01/02\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/albums/{{album_id}}/fotos/{{foto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"albums",
+						"{{album_id}}",
+						"fotos",
+						"{{foto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar una foto a un album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fechaInicio\": \"2020/12/11\",\n    \"fechaFin\": \"2020/12/11\",\n    \"titulo\": \"Verano\",\n    \"fotos\": [\n        {\n            \"ISO\": 110,\n            \"velObturacion\": 3,\n            \"apertura\": 2,\n            \"fecha\": \"2020/01/02\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/albums/{{album_id}}/fotos/{{foto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"albums",
+								"{{album_id}}",
+								"fotos",
+								"{{foto_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "232"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e8-9clLlN4mH6JkqgH+asYiF5sS3kg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 23:42:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"f920d9fa-da7b-4e73-a3f7-6e4b543b5893\",\n    \"fechaInicio\": \"2020/12/11\",\n    \"fechaFin\": \"2020/12/11\",\n    \"titulo\": \"Verano\",\n    \"fotos\": [\n        {\n            \"id\": \"0ce1cb40-863a-48ed-a4d9-814806579d55\",\n            \"ISO\": 110,\n            \"velObturacion\": 3,\n            \"apertura\": 2,\n            \"fecha\": \"2020/01/02\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar una foto invalida a un album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The photo with the given id was not found\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/albums/{{album_id}}/fotos/{{invalid_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"albums",
+						"{{album_id}}",
+						"fotos",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar una foto invalida a un album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/albums/{{album_id}}/fotos/{{invalid_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"albums",
+								"{{album_id}}",
+								"fotos",
+								"{{invalid_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-CEPGPXkvbgeRqdy2EKncrd/sJec\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 04 Dec 2023 00:25:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The photo with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un foto a un album invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The album with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/albums/{{invalid_id}}/fotos/{{foto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"albums",
+						"{{invalid_id}}",
+						"fotos",
+						"{{foto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un foto a un album invalido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/albums/{{invalid_id}}/fotos/{{foto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"albums",
+								"{{invalid_id}}",
+								"fotos",
+								"{{foto_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-vuLrv11rS7vrmxIQUrVPd0kFEZg\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 04 Dec 2023 00:26:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The album with the given id was not found\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "invalid_id",
+			"value": "00000000-0000-0000-0000-000000000000",
+			"type": "string"
+		}
+	]
+}

@@ -85,4 +85,13 @@ describe('AlbumService', () => {
     const album: AlbumEntity = albumsList[0];
     await expect(() => service.deleteAlbumById("0")).rejects.toHaveProperty("message", "The album with the given id was not found")
   });
+
+  it('delete should not remove an album if it has photos', async () => {
+    const album: AlbumEntity = albumsList[0];
+
+    await expect(service.deleteAlbumById(album.id)).rejects.toHaveProperty("message", "Cannot delete album with photos");
+
+    const nonDeletedAlbum: AlbumEntity = await repository.findOne({ where: { id: album.id } })
+    expect(nonDeletedAlbum).not.toBeNull();
+});
 });

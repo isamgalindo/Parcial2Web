@@ -21,9 +21,6 @@ export class FotoEntity {
     @Column()
     fecha: string;
 
-    @Column()
-    image: string;
-
     @ManyToOne(() => UsuarioEntity, usuario =>  usuario.fotos)
     usuario: UsuarioEntity;
 

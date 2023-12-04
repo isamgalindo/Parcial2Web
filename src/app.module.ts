@@ -10,6 +10,7 @@ import { FotoEntity } from './foto/foto.entity/foto.entity';
 import { UsuarioEntity } from './usuario/usuario.entity/usuario.entity';
 import { RedSocialEntity } from './red-social/red-social.entity/red-social.entity';
 import { AlbumEntity } from './album/album.entity/album.entity';
+import { AlbumFotoModule } from './album-foto/album-foto.module';
 
 @Module({
   imports: [FotoModule, UsuarioModule, RedSocialModule, AlbumModule, 
@@ -24,7 +25,7 @@ import { AlbumEntity } from './album/album.entity/album.entity';
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true
-    }),
+    }), AlbumFotoModule,
  
   ],
   controllers: [AppController],

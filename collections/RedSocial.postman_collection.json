@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "207a4234-5507-4776-a096-20bb2e9b28a1",
+		"name": "RedSocial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20373990",
+		"_collection_link": "https://grey-flare-858966.postman.co/workspace/Museum~8ffc3164-6317-401e-a46d-8fd5cc1b041e/collection/20373990-207a4234-5507-4776-a096-20bb2e9b28a1?action=share&source=collection_link&creator=20373990"
+	},
+	"item": [
+		{
+			"name": "Crear RedSocial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"redsocial_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Instagram\",\n    \"slogan\": \"Upload your life\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/red-socials",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"red-socials"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear una red social",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Instagram\",\n    \"slogan\": \"Upload your life\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/red-socials",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"red-socials"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5e-2nQlaxuv+QGhEkMwa0kzBZFB4gQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 04 Dec 2023 00:41:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Instagram\",\n    \"slogan\": \"Upload your life\",\n    \"id\": \"8abb5f6d-2141-4568-a632-615ebd5a804b\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear redsocial con slogan corto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"Slogan must be at least 20 characters long\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Another Company\",\n  \"slogan\": \"Short slogan\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/red-socials",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"red-socials"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear redSocial con slogan corto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Another Company\",\n  \"slogan\": \"Short slogan\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/red-socials",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"red-socials"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "73"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"49-9+HSPHuRjVBCwztI9pW0MDyneZ0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 04 Dec 2023 01:43:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"Slogan must be at least 20 characters long\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "invalid_id",
+			"value": "00000000-0000-0000-0000-000000000000",
+			"type": "string"
+		}
+	]
+}

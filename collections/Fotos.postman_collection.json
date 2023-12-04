@@ -1,0 +1,673 @@
+{
+	"info": {
+		"_postman_id": "f54a5168-6c92-4c65-9295-162c53895d26",
+		"name": "Fotos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20373990",
+		"_collection_link": "https://grey-flare-858966.postman.co/workspace/Museum~8ffc3164-6317-401e-a46d-8fd5cc1b041e/collection/20373990-f54a5168-6c92-4c65-9295-162c53895d26?action=share&source=collection_link&creator=20373990"
+	},
+	"item": [
+		{
+			"name": "Obtener todas las fotos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of fotos > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/fotos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"fotos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todas las fotos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fotos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fotos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "273"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"111-VYSfTGZb4t7aq9Yw/nbatUZVRpY\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 23:23:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"da996d3d-2641-489c-95bc-4ca18db46b58\",\n        \"ISO\": 110,\n        \"velObturacion\": 3,\n        \"apertura\": 2,\n        \"fecha\": \"2020/01/02\",\n        \"usuario\": null,\n        \"album\": null\n    },\n    {\n        \"id\": \"48a9502c-b6ba-4940-9fe3-38fe637dc1db\",\n        \"ISO\": 110,\n        \"velObturacion\": 3,\n        \"apertura\": 2,\n        \"fecha\": \"2020/01/02\",\n        \"usuario\": null,\n        \"album\": null\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Crear una foto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"foto_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ISO\": 110,\n    \"velObturacion\": 3,\n    \"apertura\": 2,\n    \"fecha\": \"2020/01/02\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/fotos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"fotos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear una foto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ISO\": 110,\n    \"velObturacion\": 3,\n    \"apertura\": 2,\n    \"fecha\": \"2020/01/02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/fotos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fotos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "107"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6b-lmkqrquNQ/y2iVyQR+RQhxiON9o\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 23:22:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ISO\": 110,\n    \"velObturacion\": 3,\n    \"apertura\": 2,\n    \"fecha\": \"2020/01/02\",\n    \"id\": \"da996d3d-2641-489c-95bc-4ca18db46b58\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una foto por Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/fotos/{{foto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"fotos",
+						"{{foto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una foto por Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fotos/{{foto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fotos",
+								"{{foto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "135"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"87-8/dQjmC0xcAXsDQ1FIJAHHq1eRs\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 23:26:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"5710d7d7-aa4f-4a13-8ec7-7b93827eb2f0\",\n    \"ISO\": 110,\n    \"velObturacion\": 3,\n    \"apertura\": 2,\n    \"fecha\": \"2020/01/02\",\n    \"usuario\": null,\n    \"album\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una foto invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The foto with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/fotos/{{invalid_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"fotos",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una foto invalida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fotos/{{invalid_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fotos",
+								"{{invalid_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"47-T01Dv4V30y9f+ZxS9yVJRIKDA/w\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 23:28:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The foto with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar una foto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/fotos/{{foto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"fotos",
+						"{{foto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar una foto",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fotos/{{foto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fotos",
+								"{{foto_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 23:29:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar una foto invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The foto with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/fotos/{{invalid_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"fotos",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar una foto invalida",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fotos/{{invalid_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fotos",
+								"{{invalid_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"47-T01Dv4V30y9f+ZxS9yVJRIKDA/w\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 23:33:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The foto with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear una foto con ISO menor a 100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The ISO is below 100\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ISO\": 99,\n    \"velObturacion\": 3,\n    \"apertura\": 2,\n    \"fecha\": \"2020/01/02\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/fotos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"fotos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear una foto con ISO menor a 100",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ISO\": 99,\n    \"velObturacion\": 3,\n    \"apertura\": 2,\n    \"fecha\": \"2020/01/02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/fotos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fotos"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-h7wTT3OrCkgffJzheICJ7mY+2Zw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 04 Dec 2023 00:58:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The ISO is below 100\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "invalid_id",
+			"value": "00000000-0000-0000-0000-000000000000",
+			"type": "string"
+		}
+	]
+}

@@ -25,9 +25,12 @@ export class AlbumService {
     }
 
     async deleteAlbumById(id: string) {
-        const album: AlbumEntity = await this.albumRepository.findOne({where:{id}});
+        const album: AlbumEntity = await this.albumRepository.findOne({where:{id}, relations: ['fotos']});
         if (!album)
           throw new BusinessLogicException("The album with the given id was not found", BusinessError.NOT_FOUND);
+
+        if (album.fotos && album.fotos.length > 0)
+          throw new BusinessLogicException("Cannot delete album with photos", BusinessError.PRECONDITION_FAILED);
      
         await this.albumRepository.remove(album);
     }
