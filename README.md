@@ -7,4 +7,4 @@ Las pruebas que elegí en postman fueron primero las básicas pero esenciales, c
 - Borrar un album que tiene fotos
 
 
-Las elegí ya que eran unos de los requerimientos que nos pedian para validar en la parte de logica, y por esta razón crei importante hacer las pruebas en Postam de estos requerimientos.
+Las elegí ya que eran las retricciones que nos pedian para validar en la parte de logica, y por esta razón crei importante hacer las pruebas en Postam de estos requerimientos.
